@@ -48,9 +48,11 @@ main{flex:1;padding:.5rem}
 .btn.p{background:var(--muted);color:var(--ink)}.btn.p:hover{background:var(--page);color:var(--cream);filter:none}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:760px){.grid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
-.shot{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;border:2px solid var(--ink);background:var(--ink);color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.shot{margin:0;border:2px solid var(--ink);background:var(--ink)}
+.shot a{display:block;aspect-ratio:16/9}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot figcaption{padding:4px 8px;font-size:13px;color:#e1e1e1}
 .ok{color:var(--accent);font-weight:700}
 footer{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;align-items:center;padding:2px 8px;min-height:24px;background:var(--ink);color:#e1e1e1}
 footer a,footer button{color:#e1e1e1}
@@ -115,11 +117,17 @@ footer button{font:inherit;background:none;border:0;padding:0;cursor:pointer;tex
   </div>
 
   <section class="box" id="screens">
-    <h2><span class="t">Screenshots</span><span class="tag">Soon</span></h2>
+    <h2><span class="t">Screenshots</span><span class="tag">9</span></h2>
     <div class="in"><div class="shots">
-      <div class="shot">Screenshot coming soon</div>
-      <div class="shot">Screenshot coming soon</div>
-      <div class="shot">Screenshot coming soon</div>
+      <figure class="shot"><a href="shots/girls.jpg"><img src="shots/girls.jpg" alt="The girls, side by side" loading="lazy"></a><figcaption>The girls, side by side</figcaption></figure>
+      <figure class="shot"><a href="shots/ellie-mansion.jpg"><img src="shots/ellie-mansion.jpg" alt="Ellie's mansion" loading="lazy"></a><figcaption>Ellie's mansion</figcaption></figure>
+      <figure class="shot"><a href="shots/jenny-house.jpg"><img src="shots/jenny-house.jpg" alt="Jenny's house" loading="lazy"></a><figcaption>Jenny's house</figcaption></figure>
+      <figure class="shot"><a href="shots/luna-boat.jpg"><img src="shots/luna-boat.jpg" alt="Luna fishing from her boat" loading="lazy"></a><figcaption>Luna fishing from her boat</figcaption></figure>
+      <figure class="shot"><a href="shots/bia-house.jpg"><img src="shots/bia-house.jpg" alt="Bia's house" loading="lazy"></a><figcaption>Bia's house</figcaption></figure>
+      <figure class="shot"><a href="shots/goblin-lair.jpg"><img src="shots/goblin-lair.jpg" alt="The goblin queen in her lair" loading="lazy"></a><figcaption>The goblin queen in her lair</figcaption></figure>
+      <figure class="shot"><a href="shots/jenny.jpg"><img src="shots/jenny.jpg" alt="Jenny out in the plains" loading="lazy"></a><figcaption>Jenny out in the plains</figcaption></figure>
+      <figure class="shot"><a href="shots/slime.jpg"><img src="shots/slime.jpg" alt="A scene in third person" loading="lazy"></a><figcaption>A scene in third person</figcaption></figure>
+      <figure class="shot"><a href="shots/scene.jpg"><img src="shots/scene.jpg" alt="A scene in first person" loading="lazy"></a><figcaption>A scene in first person</figcaption></figure>
     </div></div>
   </section>
 
