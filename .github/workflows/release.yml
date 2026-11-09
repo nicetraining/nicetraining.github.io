@@ -1,0 +1,25 @@
+# Makes a GitHub Release with the jar from download/ attached, so GitHub counts the downloads.
+# Started by hand (Actions tab > Release > Run workflow).
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. v1.0.0"
+        required: true
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create the release with the jar
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          gh release create "$TAG" download/PooPooWumboDoodyCraft-neoforge-1.21.1.jar \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --title "PooPooWumboDoodyCraft $TAG" \
+            --notes "PooPooWumboDoodyCraft for Minecraft 1.21.1 (NeoForge 21.1.242+, Java 21). Adults only (18+). See the changelog on https://nicetraining.github.io/#changelog"
