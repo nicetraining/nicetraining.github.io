@@ -205,7 +205,9 @@ footer button{font:inherit;background:none;border:0;padding:0;cursor:pointer;tex
   function show(v){if(typeof v==='number'){dlc.textContent=v.toLocaleString('en-US');dl.hidden=false}}
   fetch(API+'get/'+CK).then(function(r){return r.ok?r.json():null}).then(function(j){if(j)show(j.value)}).catch(function(){});
   [].forEach.call(document.querySelectorAll('a[data-dl]'),function(a){a.addEventListener('click',function(){
-    var now=Date.now();if(now-last<10000)return;last=now; // a double click is one download
+    // one download per browser per day: repeat clicks and reloads do not count again
+    var now=Date.now(),seen=0;try{seen=+localStorage.getItem('pwdc-dl')||0}catch(e){}
+    if(now-last<10000||now-seen<864e5)return;last=now;try{localStorage.setItem('pwdc-dl',String(now))}catch(e){}
     fetch(API+'hit/'+CK,{keepalive:true}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j)show(j.value)}).catch(function(){});
   })});
   pb.onclick=function(){var L=window.__pal.list,i=(L.indexOf(window.__pal.cur)+1)%L.length;window.__pal.cur=L[i];document.documentElement.setAttribute('data-p',L[i]);try{sessionStorage.setItem('pwdc-p',L[i])}catch(e){}lab()};lab();
