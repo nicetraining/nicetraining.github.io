@@ -90,7 +90,7 @@ footer button{font:inherit;background:none;border:0;padding:0;cursor:pointer;tex
       <h1>PooPooWumboDoodyCraft</h1>
       <p>A full rewrite of 1.12.2's FapCraft for modern versions of the game. It aims to be a faithful reconstruction of the original wherever possible, with minor tweaks to bring it into the modern era.</p>
       <p><b>Adults only (18+).</b></p>
-      <div class="btns"><a class="btn" href="download/PooPooWumboDoodyCraft-neoforge-1.21.1.jar" download data-dl>Download the jar (35 MB)</a><a class="btn p" href="https://github.com/nicetraining/PooPooWumboDoodyCraft-source">Read me</a></div>
+      <div class="btns"><a class="btn" href="https://github.com/nicetraining/nicetraining.github.io/releases/latest/download/PooPooWumboDoodyCraft-neoforge-1.21.1.jar">Download the jar (35 MB)</a><a class="btn p" href="https://github.com/nicetraining/PooPooWumboDoodyCraft-source">Read me</a></div>
       <p class="dl" id="dl" hidden>Downloaded <b id="dlc"></b> times</p>
     </div>
   </section>
@@ -111,7 +111,7 @@ footer button{font:inherit;background:none;border:0;padding:0;cursor:pointer;tex
       <div class="in">
         <ol>
           <li>Install NeoForge for Minecraft 1.21.1.</li>
-          <li><a href="download/PooPooWumboDoodyCraft-neoforge-1.21.1.jar" download data-dl>Download the jar</a> from this page.</li>
+          <li><a href="https://github.com/nicetraining/nicetraining.github.io/releases/latest/download/PooPooWumboDoodyCraft-neoforge-1.21.1.jar">Download the jar</a> from this page.</li>
           <li>Drop it into your <code>mods</code> folder and start the game.</li>
         </ol>
         <p style="margin-top:12px"><span class="ok">OK</span> Minecraft 1.21.1 / NeoForge 21.1.242+ / Java 21</p>
@@ -200,16 +200,16 @@ footer button{font:inherit;background:none;border:0;padding:0;cursor:pointer;tex
   document.getElementById('yes').onclick=function(){try{localStorage.setItem(KEY,'1')}catch(e){}gate.classList.remove('on')};
   document.getElementById('no').onclick=function(){location.href='https://www.google.com/'};
   var pb=document.getElementById('pal');function lab(){pb.textContent='palette: '+window.__pal.cur+' (change)'}
-  // download counter (abacus.jasoncameron.dev): read on load, +1 per click on a download link; hidden if the service is down
-  var API='https://abacus.jasoncameron.dev/',CK='nicetraining-ppwdc/jar-downloads',dl=document.getElementById('dl'),dlc=document.getElementById('dlc'),last=0;
-  function show(v){if(typeof v==='number'){dlc.textContent=v.toLocaleString('en-US');dl.hidden=false}}
-  fetch(API+'get/'+CK).then(function(r){return r.ok?r.json():null}).then(function(j){if(j)show(j.value)}).catch(function(){});
-  [].forEach.call(document.querySelectorAll('a[data-dl]'),function(a){a.addEventListener('click',function(){
-    // one download per browser per day: repeat clicks and reloads do not count again
-    var now=Date.now(),seen=0;try{seen=+localStorage.getItem('pwdc-dl')||0}catch(e){}
-    if(now-last<10000||now-seen<864e5)return;last=now;try{localStorage.setItem('pwdc-dl',String(now))}catch(e){}
-    fetch(API+'hit/'+CK,{keepalive:true}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j)show(j.value)}).catch(function(){});
-  })});
+  // download counter: GitHub counts each download of the release files itself (all releases added up),
+  // so it cannot be raised without really downloading the jar. Cached for 10 minutes per visitor.
+  var dl=document.getElementById('dl'),dlc=document.getElementById('dlc'),CK='pwdc-count';
+  function show(v){dlc.textContent=v.toLocaleString('en-US');dl.hidden=false}
+  try{var c=JSON.parse(sessionStorage.getItem(CK)||'null');if(c&&Date.now()-c.t<6e5)show(c.v)}catch(e){}
+  fetch('https://api.github.com/repos/nicetraining/nicetraining.github.io/releases?per_page=100')
+    .then(function(r){return r.ok?r.json():null}).then(function(rs){if(!rs)return;var v=0;
+      rs.forEach(function(r){(r.assets||[]).forEach(function(a){if(/\.jar$/.test(a.name))v+=a.download_count})});
+      show(v);try{sessionStorage.setItem(CK,JSON.stringify({v:v,t:Date.now()}))}catch(e){}})
+    .catch(function(){});
   pb.onclick=function(){var L=window.__pal.list,i=(L.indexOf(window.__pal.cur)+1)%L.length;window.__pal.cur=L[i];document.documentElement.setAttribute('data-p',L[i]);try{sessionStorage.setItem('pwdc-p',L[i])}catch(e){}lab()};lab();
 })();
 </script>
