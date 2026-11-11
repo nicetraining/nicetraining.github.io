@@ -22,4 +22,4 @@ jobs:
           gh release create "$TAG" download/*.jar \
             --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
             --title "NeoJenny $TAG" \
-            --notes "NeoJenny for Minecraft 1.21.1 (NeoForge 21.1.242+, Java 21). Adults only (18+). See the changelog on https://nicetraining.github.io/#changelog"
+            --notes "NeoJenny for Minecraft 1.21.1 (NeoForge 21.1.242+, Java 21). Adults only (18+). See the changelog on https://nicetraining.github.io/changelog.html"
