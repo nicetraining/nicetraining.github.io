@@ -1,12 +1,13 @@
 {
   "homepage": "https://nicetraining.github.io/",
   "1.21.1": {
+    "1.1.3": "Kobolds recoloured with the girl wand keep their colour. See https://nicetraining.github.io/changelog.html",
     "1.1.2": "Luna spawns with her iron sword, custom model download messages fixed. See https://nicetraining.github.io/changelog.html",
     "1.1.1": "Textures back to normal (no more streaks in the hair), bees take no fall damage, update check. See https://nicetraining.github.io/changelog.html",
     "1.1.0": "NeoJenny: smoother textures, jiggle physics in scenes, Discord link, house and tree fixes. See https://nicetraining.github.io/changelog.html"
   },
   "promos": {
-    "1.21.1-latest": "1.1.2",
-    "1.21.1-recommended": "1.1.2"
+    "1.21.1-latest": "1.1.3",
+    "1.21.1-recommended": "1.1.3"
   }
 }
